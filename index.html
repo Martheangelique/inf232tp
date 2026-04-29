@@ -1,0 +1,1603 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZE-MARTHE-ANGELIQUE_24F2763</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d1117;
+  --surface: #161b22;
+  --surface2: #21262d;
+  --border: #30363d;
+  --text: #e6edf3;
+  --text2: #8b949e;
+  --blue: #58a6ff;
+  --green: #3fb950;
+  --red: #ff6e96;
+  --purple: #d2a8ff;
+  --orange: #ffa657;
+  --yellow: #e3b341;
+  --grad1: linear-gradient(135deg, #1c2128 0%, #0d1117 100%);
+  --grad-blue: linear-gradient(135deg, #1c3a5e 0%, #0d1a2e 100%);
+  --radius: 12px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.4);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── HEADER ── */
+.header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 28px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  height: 64px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 1.2rem;
+  letter-spacing: -0.02em;
+}
+
+.logo-icon {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, #58a6ff, #d2a8ff);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+
+.header-nav {
+  display: flex;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.nav-btn {
+  padding: 6px 16px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text2);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all .2s;
+}
+
+.nav-btn:hover, .nav-btn.active {
+  background: var(--surface2);
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.nav-btn.active {
+  color: var(--blue);
+  border-color: var(--blue);
+}
+
+.status-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  padding: 4px 12px;
+  border-radius: 100px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text2);
+  font-family: 'JetBrains Mono', monospace;
+  white-space: nowrap;
+}
+
+.status-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+.status-dot.active { background: var(--green); box-shadow: 0 0 6px var(--green); }
+
+/* ── LAYOUT ── */
+.layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: calc(100vh - 64px);
+}
+
+.sidebar {
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  padding: 20px 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar-section {
+  margin-bottom: 8px;
+}
+
+.sidebar-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text2);
+  padding: 4px 10px;
+  margin-bottom: 4px;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all .15s;
+  font-size: 0.875rem;
+  color: var(--text2);
+  border: 1px solid transparent;
+}
+
+.sidebar-item:hover { background: var(--surface2); color: var(--text); }
+
+.sidebar-item.active {
+  background: rgba(88, 166, 255, 0.1);
+  border-color: rgba(88, 166, 255, 0.3);
+  color: var(--blue);
+}
+
+.sidebar-icon { font-size: 16px; flex-shrink: 0; }
+
+/* ── MAIN ── */
+.main {
+  padding: 28px;
+  overflow-y: auto;
+}
+
+.page { display: none; }
+.page.active { display: block; }
+
+/* ── CARDS ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.card-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text2);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+
+/* ── BUTTONS ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all .2s;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--blue);
+  color: #0d1117;
+  border-color: var(--blue);
+}
+.btn-primary:hover { background: #79b8ff; }
+
+.btn-secondary {
+  background: var(--surface2);
+  color: var(--text);
+  border-color: var(--border);
+}
+.btn-secondary:hover { border-color: var(--text2); }
+
+.btn-green {
+  background: rgba(63, 185, 80, 0.15);
+  color: var(--green);
+  border-color: var(--green);
+}
+.btn-green:hover { background: rgba(63, 185, 80, 0.25); }
+
+.btn-red {
+  background: rgba(255, 110, 150, 0.15);
+  color: var(--red);
+  border-color: var(--red);
+}
+.btn-red:hover { background: rgba(255, 110, 150, 0.25); }
+
+.btn-lg { padding: 12px 28px; font-size: 1rem; }
+.btn-sm { padding: 5px 12px; font-size: 0.8rem; }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* ── FORMS ── */
+.form-group { margin-bottom: 14px; }
+.form-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text2);
+  margin-bottom: 6px;
+}
+
+.form-control {
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  padding: 9px 12px;
+  font-family: inherit;
+  font-size: 0.875rem;
+  transition: border-color .2s;
+  outline: none;
+}
+
+.form-control:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(88,166,255,.15); }
+
+select.form-control option { background: var(--surface); }
+
+/* ── STAT CARDS ── */
+.stat-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.stat-label { font-size: 0.78rem; color: var(--text2); }
+
+/* ── TABLE ── */
+.table-wrap { overflow-x: auto; border-radius: 8px; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+thead th {
+  background: var(--surface2);
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text2);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+}
+
+tbody td {
+  padding: 9px 14px;
+  border-bottom: 1px solid rgba(48,54,61,.5);
+  color: var(--text);
+  vertical-align: middle;
+}
+
+tbody tr:hover { background: rgba(255,255,255,.02); }
+tbody tr:last-child td { border-bottom: none; }
+
+/* ── RESULT SECTION ── */
+.result-block {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-top: 16px;
+}
+
+.result-img {
+  width: 100%;
+  border-radius: 8px;
+  margin-top: 16px;
+  border: 1px solid var(--border);
+}
+
+.metric-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.metric-chip {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 16px;
+  min-width: 120px;
+}
+
+.metric-chip-label { font-size: 0.72rem; color: var(--text2); margin-bottom: 2px; }
+.metric-chip-val {
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--blue);
+}
+
+/* ── UPLOAD ZONE ── */
+.upload-zone {
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  padding: 48px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: all .2s;
+  background: var(--bg);
+}
+
+.upload-zone:hover, .upload-zone.dragover {
+  border-color: var(--blue);
+  background: rgba(88,166,255,.05);
+}
+
+.upload-icon { font-size: 48px; margin-bottom: 12px; }
+.upload-text { color: var(--text2); font-size: 0.9rem; }
+.upload-text span { color: var(--blue); font-weight: 500; }
+
+/* ── TAGS ── */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+.tag-blue { background: rgba(88,166,255,.15); color: var(--blue); }
+.tag-green { background: rgba(63,185,80,.15); color: var(--green); }
+.tag-red { background: rgba(255,110,150,.15); color: var(--red); }
+.tag-purple { background: rgba(210,168,255,.15); color: var(--purple); }
+.tag-orange { background: rgba(255,166,87,.15); color: var(--orange); }
+
+/* ── TOAST ── */
+.toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.toast {
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: 1px solid;
+  max-width: 340px;
+  animation: slideIn .3s ease;
+  box-shadow: var(--shadow);
+}
+
+.toast-success { background: rgba(63,185,80,.15); border-color: var(--green); color: var(--green); }
+.toast-error { background: rgba(255,110,150,.15); border-color: var(--red); color: var(--red); }
+.toast-info { background: rgba(88,166,255,.15); border-color: var(--blue); color: var(--blue); }
+
+@keyframes slideIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* ── SPINNER ── */
+.spinner {
+  width: 24px; height: 24px;
+  border: 2px solid var(--border);
+  border-top-color: var(--blue);
+  border-radius: 50%;
+  animation: spin .7s linear infinite;
+  display: inline-block;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.loading-overlay {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 32px;
+  color: var(--text2);
+}
+.loading-overlay.show { display: flex; }
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(135deg, #0d1117 0%, #1c2128 50%, #0d1117 100%);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 40px;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(88,166,255,.08), transparent 70%);
+  pointer-events: none;
+}
+
+.hero-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, #e6edf3, #58a6ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub { color: var(--text2); font-size: 1rem; max-width: 480px; }
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.feature-card {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px;
+  transition: border-color .2s;
+  cursor: pointer;
+}
+.feature-card:hover { border-color: var(--blue); }
+.feature-card-icon { font-size: 24px; margin-bottom: 10px; }
+.feature-card-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; }
+.feature-card-desc { font-size: 0.8rem; color: var(--text2); }
+
+/* ── MANUAL ENTRY TABLE ── */
+.entry-table-wrap { overflow-x: auto; max-height: 400px; overflow-y: auto; }
+
+#entryTable input {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  padding: 6px;
+  width: 100%;
+  outline: none;
+}
+#entryTable input:focus { background: rgba(88,166,255,.08); border-radius: 4px; }
+
+/* ── MULTI-SELECT ── */
+.multi-select-wrap {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  max-height: 160px;
+  overflow-y: auto;
+  padding: 6px;
+}
+
+.multi-select-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background .15s;
+}
+.multi-select-item:hover { background: var(--surface2); }
+.multi-select-item input { width: 14px; height: 14px; accent-color: var(--blue); cursor: pointer; }
+
+/* ── HISTORY ── */
+.history-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.83rem;
+  color: var(--text2);
+  border-bottom: 1px solid rgba(48,54,61,.4);
+}
+.history-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
+
+/* ── CODE ── */
+.code-block {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  color: var(--green);
+  overflow-x: auto;
+  white-space: pre;
+  line-height: 1.6;
+}
+
+/* ── PROGRESS ── */
+.progress-bar {
+  height: 6px;
+  background: var(--surface2);
+  border-radius: 100px;
+  overflow: hidden;
+  margin-top: 6px;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: 100px;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+  transition: width .5s ease;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text2); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .grid-4, .grid-3 { grid-template-columns: 1fr 1fr; }
+  .feature-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header class="header">
+  <div class="logo">
+    <div class="logo-icon">🧬</div>
+    EpidemSys
+  </div>
+  <div class="header-nav">
+    <button class="nav-btn active" onclick="showPage('home')">🏠 Accueil</button>
+    <button class="nav-btn" onclick="showPage('collect')">📥 Collecte</button>
+    <button class="nav-btn" onclick="showPage('analyse')">🔬 Analyse</button>
+    <button class="nav-btn" onclick="showPage('resultats')">📊 Résultats</button>
+  </div>
+  <div id="statusBadge" class="status-badge">
+    <span class="status-dot" id="statusDot"></span>
+    <span id="statusText">Aucune donnée</span>
+  </div>
+</header>
+
+<div class="layout">
+<!-- ── SIDEBAR ── -->
+<aside class="sidebar">
+  <div class="sidebar-section">
+    <div class="sidebar-label">Navigation</div>
+    <div class="sidebar-item active" onclick="showPage('home')">
+      <span class="sidebar-icon">🏠</span> Accueil
+    </div>
+    <div class="sidebar-item" onclick="showPage('collect')">
+      <span class="sidebar-icon">📥</span> Collecte de Données
+    </div>
+    <div class="sidebar-item" onclick="showPage('analyse')">
+      <span class="sidebar-icon">🔬</span> Analyse
+    </div>
+    <div class="sidebar-item" onclick="showPage('resultats')">
+      <span class="sidebar-icon">📊</span> Résultats
+    </div>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-label">Analyses</div>
+    <div class="sidebar-item" onclick="showPage('analyse'); setAnalysisTab('descriptive')">
+      <span class="sidebar-icon">📈</span> Statistiques
+    </div>
+    <div class="sidebar-item" onclick="showPage('analyse'); setAnalysisTab('regression_simple')">
+      <span class="sidebar-icon">📉</span> Régression Simple
+    </div>
+    <div class="sidebar-item" onclick="showPage('analyse'); setAnalysisTab('regression_multiple')">
+      <span class="sidebar-icon">📐</span> Régression Multiple
+    </div>
+    <div class="sidebar-item" onclick="showPage('analyse'); setAnalysisTab('clustering')">
+      <span class="sidebar-icon">🎯</span> Clustering
+    </div>
+    <div class="sidebar-item" onclick="showPage('analyse'); setAnalysisTab('acp')">
+      <span class="sidebar-icon">🔮</span> ACP
+    </div>
+  </div>
+
+  <div class="sidebar-section" style="margin-top: auto;">
+    <div class="sidebar-label">Actions</div>
+    <div class="sidebar-item" onclick="exportData()">
+      <span class="sidebar-icon">💾</span> Exporter CSV
+    </div>
+  </div>
+</aside>
+
+<!-- ── MAIN ── -->
+<main class="main">
+
+<!-- ══════════ PAGE ACCUEIL ══════════ -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <div class="hero-title">EpidemSys</div>
+    <div class="hero-sub">Plateforme ultra-performante de collecte et d'analyse de données épidémiologiques</div>
+    <div class="feature-grid">
+      <div class="feature-card" onclick="showPage('collect')">
+        <div class="feature-card-icon">📥</div>
+        <div class="feature-card-title">Collecte de Données</div>
+        <div class="feature-card-desc">Saisie manuelle, import CSV ou génération synthétique</div>
+      </div>
+      <div class="feature-card" onclick="showPage('analyse')">
+        <div class="feature-card-icon">🔬</div>
+        <div class="feature-card-title">Analyse Statistique</div>
+        <div class="feature-card-desc">Régression, clustering, ACP avec visualisations</div>
+      </div>
+      <div class="feature-card" onclick="showPage('resultats')">
+        <div class="feature-card-icon">📊</div>
+        <div class="feature-card-title">Résultats & Rapports</div>
+        <div class="feature-card-desc">Tableaux de bord et export des analyses</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="homeDataInfo" style="display:none">
+    <div class="card">
+      <div class="card-title">📋 Données Actuelles</div>
+      <div class="grid-4" id="homeStats"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">👁️ Aperçu des Données</div>
+      <div class="table-wrap" id="homePreview"></div>
+    </div>
+  </div>
+
+  <div id="homeNoData" class="card" style="text-align:center; padding: 48px;">
+    <div style="font-size: 48px; margin-bottom: 16px;">🧬</div>
+    <div style="font-size: 1.1rem; font-weight: 600; margin-bottom: 8px;">Commencez par charger des données</div>
+    <div style="color: var(--text2); margin-bottom: 24px;">Saisissez manuellement, importez un fichier CSV ou générez des données synthétiques</div>
+    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+      <button class="btn btn-primary btn-lg" onclick="showPage('collect')">📥 Charger des Données</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ PAGE COLLECTE ══════════ -->
+<div id="page-collect" class="page">
+
+  <!-- Tabs -->
+  <div style="display:flex; gap:8px; margin-bottom:20px; background:var(--surface); border:1px solid var(--border); padding:4px; border-radius:10px; width:fit-content;">
+    <button class="btn btn-primary" id="ctab-generate" onclick="showCollectTab('generate')">🧬 Générer</button>
+    <button class="btn btn-secondary" id="ctab-upload" onclick="showCollectTab('upload')">📁 Importer CSV</button>
+    <button class="btn btn-secondary" id="ctab-manual" onclick="showCollectTab('manual')">✏️ Saisie Manuelle</button>
+  </div>
+
+  <!-- ── TAB: GÉNÉRATION ── -->
+  <div id="ctab-generate-content">
+    <div class="card">
+      <div class="card-title">🧬 Génération de Données Synthétiques</div>
+      <p style="color:var(--text2); font-size:.875rem; margin-bottom:20px;">
+        Générez des jeux de données épidémiologiques réalistes avec des caractéristiques cliniques et biologiques pertinentes.
+      </p>
+      <div class="grid-2">
+        <div class="form-group">
+          <label class="form-label">Type de Maladie</label>
+          <select class="form-control" id="genType">
+            <option value="infectious">🦠 Maladies Infectieuses (COVID, Ebola, Paludisme…)</option>
+            <option value="chronic">💊 Maladies Chroniques (Diabète, HTA, Obésité…)</option>
+            <option value="environmental">🌿 Maladies Environnementales (Pollution, Climat…)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Nombre d'Observations</label>
+          <input type="number" class="form-control" id="genN" value="200" min="20" max="5000">
+        </div>
+      </div>
+
+      <div id="genInfo" style="background:var(--surface2); border:1px solid var(--border); border-radius:8px; padding:14px; margin-bottom:20px; font-size:.85rem; color:var(--text2);">
+        Sélectionnez un type pour voir les variables générées.
+      </div>
+
+      <button class="btn btn-primary btn-lg" onclick="generateData()">
+        ⚡ Générer les Données
+      </button>
+    </div>
+  </div>
+
+  <!-- ── TAB: UPLOAD ── -->
+  <div id="ctab-upload-content" style="display:none">
+    <div class="card">
+      <div class="card-title">📁 Importer un Fichier CSV</div>
+      <div class="upload-zone" id="uploadZone" onclick="document.getElementById('fileInput').click()">
+        <input type="file" id="fileInput" accept=".csv" style="display:none" onchange="handleFile(event)">
+        <div class="upload-icon">📂</div>
+        <div class="upload-text">
+          <strong style="color:var(--text);">Cliquez pour sélectionner</strong> ou glissez votre fichier CSV ici
+        </div>
+        <div class="upload-text" style="margin-top:8px; font-size:.8rem;">Format accepté : .csv (séparateur virgule ou point-virgule)</div>
+      </div>
+
+      <div id="uploadPreview" style="display:none; margin-top:16px;">
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+          <span class="tag tag-green">✓ Fichier chargé</span>
+          <span id="uploadFilename" style="font-family:'JetBrains Mono',monospace; font-size:.85rem; color:var(--text2);"></span>
+        </div>
+        <div class="table-wrap" id="uploadTable"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TAB: SAISIE MANUELLE ── -->
+  <div id="ctab-manual-content" style="display:none">
+    <div class="card">
+      <div class="card-title">✏️ Saisie Manuelle des Données</div>
+
+      <div style="margin-bottom:16px;">
+        <label class="form-label">Modèle épidémiologique (optionnel)</label>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button class="btn btn-secondary btn-sm" onclick="loadManualTemplate('infectieux')">🦠 Infectieux</button>
+          <button class="btn btn-secondary btn-sm" onclick="loadManualTemplate('chronique')">💊 Chronique</button>
+          <button class="btn btn-secondary btn-sm" onclick="loadManualTemplate('general')">📋 Général</button>
+          <button class="btn btn-secondary btn-sm" onclick="clearManualTable()">🗑️ Vider</button>
+        </div>
+      </div>
+
+      <div style="margin-bottom:12px; display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+        <label class="form-label" style="margin:0;">Colonnes :</label>
+        <input type="text" id="manualCols" class="form-control" style="width:auto; flex:1; min-width:200px;"
+               placeholder="Age,Sexe,Temperature,Diagnostic" value="ID,Age,Sexe,Region,Diagnostic,Hospitalise">
+        <button class="btn btn-secondary btn-sm" onclick="rebuildManualTable()">↺ Reconstruire</button>
+      </div>
+
+      <div class="entry-table-wrap" id="manualTableWrap">
+        <table id="entryTable"></table>
+      </div>
+
+      <div style="display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;">
+        <button class="btn btn-secondary btn-sm" onclick="addManualRow()">➕ Ajouter ligne</button>
+        <button class="btn btn-secondary btn-sm" onclick="removeLastRow()">➖ Supprimer dernière</button>
+        <button class="btn btn-primary" style="margin-left:auto;" onclick="submitManualData()">
+          💾 Enregistrer les données
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ PAGE ANALYSE ══════════ -->
+<div id="page-analyse" class="page">
+
+  <div id="analyseNoData" class="card" style="text-align:center; padding:40px; display:none;">
+    <div style="font-size:40px; margin-bottom:12px;">⚠️</div>
+    <div style="font-weight:600; margin-bottom:8px;">Aucune donnée chargée</div>
+    <div style="color:var(--text2); margin-bottom:16px;">Veuillez d'abord charger ou générer des données</div>
+    <button class="btn btn-primary" onclick="showPage('collect')">📥 Charger des données</button>
+  </div>
+
+  <div id="analyseContent">
+    <!-- Analysis type tabs -->
+    <div style="display:flex; gap:6px; margin-bottom:20px; flex-wrap:wrap;">
+      <button class="btn btn-primary btn-sm" id="atab-descriptive" onclick="setAnalysisTab('descriptive')">📈 Descriptive</button>
+      <button class="btn btn-secondary btn-sm" id="atab-regression_simple" onclick="setAnalysisTab('regression_simple')">📉 Rég. Simple</button>
+      <button class="btn btn-secondary btn-sm" id="atab-regression_multiple" onclick="setAnalysisTab('regression_multiple')">📐 Rég. Multiple</button>
+      <button class="btn btn-secondary btn-sm" id="atab-clustering" onclick="setAnalysisTab('clustering')">🎯 Clustering</button>
+      <button class="btn btn-secondary btn-sm" id="atab-acp" onclick="setAnalysisTab('acp')">🔮 ACP</button>
+    </div>
+
+    <!-- DESCRIPTIVE -->
+    <div id="atab-descriptive-content">
+      <div class="card">
+        <div class="card-title">📈 Statistiques Descriptives</div>
+        <p style="color:var(--text2); font-size:.875rem; margin-bottom:16px;">
+          Vue d'ensemble de vos données avec mesures de tendance centrale, dispersion et corrélations.
+        </p>
+        <button class="btn btn-primary" onclick="runAnalysis('descriptive', {})">⚡ Lancer l'Analyse</button>
+      </div>
+    </div>
+
+    <!-- RÉGRESSION SIMPLE -->
+    <div id="atab-regression_simple-content" style="display:none">
+      <div class="card">
+        <div class="card-title">📉 Régression Linéaire Simple</div>
+        <div class="grid-2">
+          <div class="form-group">
+            <label class="form-label">Variable Indépendante (X)</label>
+            <select class="form-control" id="rs-x"></select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Variable Dépendante (Y)</label>
+            <select class="form-control" id="rs-y"></select>
+          </div>
+        </div>
+        <button class="btn btn-primary" onclick="runRegSimple()">⚡ Analyser</button>
+      </div>
+    </div>
+
+    <!-- RÉGRESSION MULTIPLE -->
+    <div id="atab-regression_multiple-content" style="display:none">
+      <div class="card">
+        <div class="card-title">📐 Régression Linéaire Multiple</div>
+        <div class="grid-2">
+          <div class="form-group">
+            <label class="form-label">Variables Indépendantes (X) — sélection multiple</label>
+            <div class="multi-select-wrap" id="rm-x-list"></div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Variable Dépendante (Y)</label>
+            <select class="form-control" id="rm-y"></select>
+          </div>
+        </div>
+        <button class="btn btn-primary" onclick="runRegMultiple()">⚡ Analyser</button>
+      </div>
+    </div>
+
+    <!-- CLUSTERING -->
+    <div id="atab-clustering-content" style="display:none">
+      <div class="card">
+        <div class="card-title">🎯 Clustering K-Means</div>
+        <div class="grid-2">
+          <div class="form-group">
+            <label class="form-label">Variables pour le Clustering</label>
+            <div class="multi-select-wrap" id="cl-vars-list"></div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nombre de Clusters (k)</label>
+            <input type="number" class="form-control" id="cl-k" value="3" min="2" max="10">
+            <div style="margin-top:8px; font-size:.8rem; color:var(--text2);">
+              💡 Testez k=2 à k=6, puis observez le score silhouette
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-primary" onclick="runClustering()">⚡ Analyser</button>
+      </div>
+    </div>
+
+    <!-- ACP -->
+    <div id="atab-acp-content" style="display:none">
+      <div class="card">
+        <div class="card-title">🔮 Analyse en Composantes Principales (ACP)</div>
+        <div class="form-group">
+          <label class="form-label">Variables à inclure (numériques uniquement)</label>
+          <div class="multi-select-wrap" id="acp-vars-list"></div>
+        </div>
+        <div style="display:flex; gap:8px; margin-top:4px;">
+          <button class="btn btn-secondary btn-sm" onclick="selectAllACP()">✅ Tout sélectionner</button>
+          <button class="btn btn-secondary btn-sm" onclick="clearAllACP()">☐ Tout désélectionner</button>
+        </div>
+        <button class="btn btn-primary" style="margin-top:16px;" onclick="runACP()">⚡ Analyser</button>
+      </div>
+    </div>
+
+    <!-- Loading -->
+    <div class="loading-overlay" id="analyseLoading">
+      <div class="spinner"></div>
+      <span>Calcul en cours…</span>
+    </div>
+
+    <!-- Results -->
+    <div id="analyseResults"></div>
+  </div>
+</div>
+
+<!-- ══════════ PAGE RÉSULTATS ══════════ -->
+<div id="page-resultats" class="page">
+  <div class="card">
+    <div class="card-title">📊 Résumé des Données</div>
+    <div id="resultDataSummary" style="color:var(--text2); text-align:center; padding:24px;">
+      Chargez des données pour afficher le résumé.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📜 Historique des Actions</div>
+    <div id="historyList">
+      <div style="color:var(--text2); text-align:center; padding:16px; font-size:.875rem;">Aucune action enregistrée.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">💾 Export</div>
+    <div style="display:flex; gap:12px; flex-wrap:wrap;">
+      <button class="btn btn-green" onclick="exportData()">📥 Télécharger CSV</button>
+      <button class="btn btn-secondary" onclick="printPage()">🖨️ Imprimer / PDF</button>
+    </div>
+  </div>
+</div>
+
+</main>
+</div>
+
+<!-- TOAST -->
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+// ─────────────────────────────────────────────
+//  STATE
+// ─────────────────────────────────────────────
+let state = {
+  loaded: false,
+  rows: 0, cols: 0,
+  columns: [],
+  numeric_cols: [],
+  cat_cols: [],
+  preview: [],
+  filename: '',
+  results: []
+};
+
+const API = 'http://localhost:8765';
+
+// ─────────────────────────────────────────────
+//  UTILS
+// ─────────────────────────────────────────────
+function toast(msg, type='info') {
+  const el = document.createElement('div');
+  el.className = `toast toast-${type}`;
+  el.textContent = msg;
+  document.getElementById('toastContainer').appendChild(el);
+  setTimeout(() => el.remove(), 3500);
+}
+
+function showPage(p) {
+  document.querySelectorAll('.page').forEach(x => x.classList.remove('active'));
+  document.getElementById(`page-${p}`).classList.add('active');
+  document.querySelectorAll('.nav-btn').forEach(x => x.classList.remove('active'));
+  document.querySelectorAll('.sidebar-item').forEach(x => x.classList.remove('active'));
+  if (p === 'analyse') refreshAnalyseSelectors();
+  if (p === 'resultats') refreshResultats();
+  if (p === 'home') refreshHome();
+}
+
+function setAnalysisTab(tab) {
+  ['descriptive','regression_simple','regression_multiple','clustering','acp'].forEach(t => {
+    document.getElementById(`atab-${t}-content`).style.display = t === tab ? '' : 'none';
+    const btn = document.getElementById(`atab-${t}`);
+    btn.className = t === tab ? 'btn btn-primary btn-sm' : 'btn btn-secondary btn-sm';
+  });
+}
+
+function showCollectTab(tab) {
+  ['generate','upload','manual'].forEach(t => {
+    document.getElementById(`ctab-${t}-content`).style.display = t === tab ? '' : 'none';
+    const btn = document.getElementById(`ctab-${t}`);
+    btn.className = t === tab ? 'btn btn-primary' : 'btn btn-secondary';
+  });
+}
+
+// ─────────────────────────────────────────────
+//  STATUS UPDATE
+// ─────────────────────────────────────────────
+function updateStatus(data) {
+  state = { ...state, ...data };
+  const dot = document.getElementById('statusDot');
+  const txt = document.getElementById('statusText');
+  if (state.loaded) {
+    dot.className = 'status-dot active';
+    txt.textContent = `${state.filename || 'données'} · ${state.rows}×${state.cols}`;
+  } else {
+    dot.className = 'status-dot';
+    txt.textContent = 'Aucune donnée';
+  }
+}
+
+// ─────────────────────────────────────────────
+//  HOME
+// ─────────────────────────────────────────────
+function refreshHome() {
+  const info = document.getElementById('homeDataInfo');
+  const nodata = document.getElementById('homeNoData');
+  if (!state.loaded) { info.style.display='none'; nodata.style.display=''; return; }
+  info.style.display=''; nodata.style.display='none';
+  document.getElementById('homeStats').innerHTML = `
+    <div class="stat-card"><div class="stat-value" style="color:var(--blue)">${state.rows}</div><div class="stat-label">Observations</div></div>
+    <div class="stat-card"><div class="stat-value" style="color:var(--green)">${state.cols}</div><div class="stat-label">Variables</div></div>
+    <div class="stat-card"><div class="stat-value" style="color:var(--purple)">${state.numeric_cols.length}</div><div class="stat-label">Numériques</div></div>
+    <div class="stat-card"><div class="stat-value" style="color:var(--orange)">${state.cat_cols.length}</div><div class="stat-label">Catégorielles</div></div>
+  `;
+  if (state.preview && state.preview.length) {
+    document.getElementById('homePreview').innerHTML = buildTable(state.preview, state.columns);
+  }
+}
+
+// ─────────────────────────────────────────────
+//  GENERATE DATA
+// ─────────────────────────────────────────────
+const genInfoText = {
+  infectious: '🦠 Variables: ID, Age, Sexe, Région, Exposition, Incubation, Température, Charge virale, Sévérité, Hospitalisé, Guéri, Décès, Durée maladie',
+  chronic: '💊 Variables: ID, Age, Sexe, Région, IMC, Fumeur, Activité physique, Tensions (S/D), Glycémie, Cholestérol, Diabète, HTA',
+  environmental: '🌿 Variables: ID, Age, Sexe, Région, Température env., Pollution PM2.5, Humidité, Cas/semaine, Maladies resp./cutanées'
+};
+
+document.getElementById('genType').addEventListener('change', function() {
+  document.getElementById('genInfo').textContent = genInfoText[this.value] || '';
+});
+document.getElementById('genInfo').textContent = genInfoText['infectious'];
+
+async function generateData() {
+  const type = document.getElementById('genType').value;
+  const n = parseInt(document.getElementById('genN').value);
+  toast('Génération en cours…', 'info');
+  try {
+    const res = await fetch(`${API}/api/generate`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({type, n})
+    });
+    const data = await res.json();
+    if (data.success) {
+      updateStatus({loaded:true, rows:data.rows, cols:data.cols,
+        columns:data.columns, numeric_cols:data.numeric_cols,
+        cat_cols:data.cat_cols, preview:data.preview, filename:`synthétique_${type}`});
+      toast(`✅ ${data.rows} observations générées (${type})`, 'success');
+      showPage('home');
+    }
+  } catch(e) { toast('Erreur: '+e.message, 'error'); }
+}
+
+// ─────────────────────────────────────────────
+//  FILE UPLOAD
+// ─────────────────────────────────────────────
+const uploadZone = document.getElementById('uploadZone');
+uploadZone.addEventListener('dragover', e => { e.preventDefault(); uploadZone.classList.add('dragover'); });
+uploadZone.addEventListener('dragleave', () => uploadZone.classList.remove('dragover'));
+uploadZone.addEventListener('drop', e => {
+  e.preventDefault(); uploadZone.classList.remove('dragover');
+  const f = e.dataTransfer.files[0];
+  if (f) processFile(f);
+});
+
+function handleFile(event) {
+  const f = event.target.files[0];
+  if (f) processFile(f);
+}
+
+function processFile(file) {
+  const reader = new FileReader();
+  reader.onload = async function(e) {
+    const b64 = btoa(unescape(encodeURIComponent(e.target.result)));
+    try {
+      const res = await fetch(`${API}/api/upload`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({data: b64, filename: file.name})
+      });
+      const data = await res.json();
+      if (data.success) {
+        updateStatus({loaded:true, rows:data.rows, cols:data.cols,
+          columns:data.columns, numeric_cols:data.numeric_cols,
+          cat_cols:data.cat_cols, preview:data.preview, filename:file.name});
+        document.getElementById('uploadPreview').style.display = '';
+        document.getElementById('uploadFilename').textContent = file.name;
+        document.getElementById('uploadTable').innerHTML = buildTable(data.preview, data.columns);
+        toast(`✅ ${file.name} chargé (${data.rows} lignes)`, 'success');
+      } else {
+        toast('Erreur: '+data.error, 'error');
+      }
+    } catch(err) { toast('Erreur upload: '+err.message, 'error'); }
+  };
+  reader.readAsText(file, 'utf-8');
+}
+
+// ─────────────────────────────────────────────
+//  MANUAL ENTRY
+// ─────────────────────────────────────────────
+let manualCols = ['ID','Age','Sexe','Region','Diagnostic','Hospitalise'];
+let manualRows = [];
+
+const templates = {
+  infectieux: ['ID','Age','Sexe','Region','Exposition','Incubation_jours','Temperature','Diagnostic','Hospitalise','Gueri'],
+  chronique: ['ID','Age','Sexe','Region','IMC','Fumeur','Tension_systolique','Glycemie','Cholesterol','Diabete'],
+  general: ['ID','Nom','Age','Sexe','Region','Date','Diagnostic','Traitement','Issue']
+};
+
+function loadManualTemplate(t) {
+  manualCols = templates[t] || manualCols;
+  document.getElementById('manualCols').value = manualCols.join(',');
+  rebuildManualTable();
+}
+
+function rebuildManualTable() {
+  const raw = document.getElementById('manualCols').value;
+  manualCols = raw.split(',').map(c => c.trim()).filter(Boolean);
+  manualRows = [];
+  renderManualTable();
+  addManualRow();
+}
+
+function renderManualTable() {
+  const table = document.getElementById('entryTable');
+  let html = '<thead><tr>';
+  manualCols.forEach(c => { html += `<th>${c}</th>`; });
+  html += '<th>✕</th></tr></thead><tbody id="manualTbody">';
+  manualRows.forEach((row, ri) => {
+    html += `<tr>`;
+    manualCols.forEach((c, ci) => {
+      html += `<td><input type="text" value="${row[c]||''}" oninput="setCell(${ri},'${c}',this.value)" placeholder="${c}"></td>`;
+    });
+    html += `<td><button class="btn btn-red btn-sm" onclick="removeRow(${ri})">✕</button></td></tr>`;
+  });
+  html += '</tbody>';
+  table.innerHTML = html;
+}
+
+function setCell(ri, col, val) { if (manualRows[ri]) manualRows[ri][col] = val; }
+
+function addManualRow() {
+  const row = {};
+  manualCols.forEach(c => { row[c] = ''; });
+  if (manualRows.length === 0 || manualCols.includes('ID')) {
+    const id = manualRows.length + 1;
+    if (manualCols.includes('ID')) row['ID'] = id;
+  }
+  manualRows.push(row);
+  renderManualTable();
+}
+
+function removeRow(ri) {
+  manualRows.splice(ri, 1);
+  renderManualTable();
+}
+
+function removeLastRow() {
+  if (manualRows.length > 0) { manualRows.pop(); renderManualTable(); }
+}
+
+function clearManualTable() { manualRows = []; renderManualTable(); }
+
+async function submitManualData() {
+  const records = manualRows.filter(r => Object.values(r).some(v => v !== ''));
+  if (!records.length) { toast('Aucune donnée saisie', 'error'); return; }
+  try {
+    const res = await fetch(`${API}/api/manual_entry`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({records})
+    });
+    const data = await res.json();
+    if (data.success) {
+      updateStatus({loaded:true, rows:data.rows, cols:data.cols,
+        columns:data.columns, numeric_cols:data.numeric_cols,
+        cat_cols:data.cat_cols, preview:data.preview, filename:'saisie_manuelle'});
+      toast(`✅ ${data.rows} enregistrements sauvegardés`, 'success');
+      showPage('home');
+    } else { toast('Erreur: '+data.error, 'error'); }
+  } catch(e) { toast('Erreur: '+e.message, 'error'); }
+}
+
+// Init manual table
+rebuildManualTable();
+
+// ─────────────────────────────────────────────
+//  ANALYSE SELECTORS
+// ─────────────────────────────────────────────
+function refreshAnalyseSelectors() {
+  if (!state.loaded) {
+    document.getElementById('analyseNoData').style.display = '';
+    document.getElementById('analyseContent').style.display = 'none';
+    return;
+  }
+  document.getElementById('analyseNoData').style.display = 'none';
+  document.getElementById('analyseContent').style.display = '';
+
+  const num = state.numeric_cols;
+
+  // Regression simple
+  ['rs-x','rs-y'].forEach(id => {
+    const sel = document.getElementById(id);
+    sel.innerHTML = num.map(c => `<option value="${c}">${c}</option>`).join('');
+  });
+  if (num.length >= 2) document.getElementById('rs-y').value = num[1];
+
+  // Regression multiple
+  document.getElementById('rm-x-list').innerHTML = num.map(c =>
+    `<label class="multi-select-item"><input type="checkbox" value="${c}" ${num.indexOf(c)<3?'checked':''}> ${c}</label>`
+  ).join('');
+  document.getElementById('rm-y').innerHTML = num.map(c => `<option value="${c}">${c}</option>`).join('');
+  if (num.length >= 2) document.getElementById('rm-y').value = num[num.length-1];
+
+  // Clustering
+  document.getElementById('cl-vars-list').innerHTML = num.map(c =>
+    `<label class="multi-select-item"><input type="checkbox" value="${c}" ${num.indexOf(c)<4?'checked':''}> ${c}</label>`
+  ).join('');
+
+  // ACP
+  document.getElementById('acp-vars-list').innerHTML = num.map(c =>
+    `<label class="multi-select-item"><input type="checkbox" value="${c}" checked> ${c}</label>`
+  ).join('');
+}
+
+function getChecked(listId) {
+  return [...document.querySelectorAll(`#${listId} input[type=checkbox]:checked`)].map(x => x.value);
+}
+
+function selectAllACP() {
+  document.querySelectorAll('#acp-vars-list input').forEach(x => x.checked = true);
+}
+function clearAllACP() {
+  document.querySelectorAll('#acp-vars-list input').forEach(x => x.checked = false);
+}
+
+// ─────────────────────────────────────────────
+//  RUN ANALYSIS
+// ─────────────────────────────────────────────
+async function runAnalysis(type, params) {
+  const loading = document.getElementById('analyseLoading');
+  const resultsDiv = document.getElementById('analyseResults');
+  loading.classList.add('show');
+  resultsDiv.innerHTML = '';
+  try {
+    const res = await fetch(`${API}/api/analyse`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({type, ...params})
+    });
+    const data = await res.json();
+    loading.classList.remove('show');
+    if (data.success) {
+      renderResults(data);
+      state.results.unshift({type, data, ts: new Date().toLocaleTimeString()});
+      toast('✅ Analyse terminée', 'success');
+    } else {
+      toast('Erreur: '+data.error, 'error');
+      resultsDiv.innerHTML = `<div class="card"><div style="color:var(--red)">❌ ${data.error}</div></div>`;
+    }
+  } catch(e) {
+    loading.classList.remove('show');
+    toast('Erreur: '+e.message, 'error');
+  }
+}
+
+function runRegSimple() {
+  const x = document.getElementById('rs-x').value;
+  const y = document.getElementById('rs-y').value;
+  if (x === y) { toast('X et Y doivent être différents', 'error'); return; }
+  runAnalysis('regression_simple', {x_col: x, y_col: y});
+}
+
+function runRegMultiple() {
+  const xs = getChecked('rm-x-list');
+  const y = document.getElementById('rm-y').value;
+  if (xs.length < 2) { toast('Sélectionnez au moins 2 variables X', 'error'); return; }
+  if (xs.includes(y)) { toast('Y ne doit pas être dans les X', 'error'); return; }
+  runAnalysis('regression_multiple', {x_cols: xs, y_col: y});
+}
+
+function runClustering() {
+  const cols = getChecked('cl-vars-list');
+  const k = parseInt(document.getElementById('cl-k').value);
+  if (cols.length < 2) { toast('Sélectionnez au moins 2 variables', 'error'); return; }
+  runAnalysis('clustering', {cols, n_clusters: k});
+}
+
+function runACP() {
+  const cols = getChecked('acp-vars-list');
+  if (cols.length < 2) { toast('Sélectionnez au moins 2 variables', 'error'); return; }
+  runAnalysis('acp', {cols});
+}
+
+// ─────────────────────────────────────────────
+//  RENDER RESULTS
+// ─────────────────────────────────────────────
+function renderResults(data) {
+  const div = document.getElementById('analyseResults');
+  let html = '';
+
+  if (data.type === 'descriptive') {
+    html += `<div class="card">
+      <div class="card-title">📈 Statistiques Descriptives</div>
+      <div class="grid-4" style="margin-bottom:16px;">
+        <div class="stat-card"><div class="stat-value" style="color:var(--blue)">${data.shape.rows}</div><div class="stat-label">Observations</div></div>
+        <div class="stat-card"><div class="stat-value" style="color:var(--green)">${data.shape.cols}</div><div class="stat-label">Variables</div></div>
+        <div class="stat-card"><div class="stat-value" style="color:var(--purple)">${data.numeric_cols.length}</div><div class="stat-label">Numériques</div></div>
+        <div class="stat-card"><div class="stat-value" style="color:var(--orange)">${data.cat_cols.length}</div><div class="stat-label">Catégorielles</div></div>
+      </div>`;
+    if (Object.keys(data.statistics).length) {
+      html += `<div class="table-wrap"><table>
+        <thead><tr><th>Variable</th><th>N</th><th>Moyenne</th><th>Écart-type</th><th>Min</th><th>Médiane</th><th>Max</th><th>Asymétrie</th><th>Manquants</th></tr></thead>
+        <tbody>`;
+      for (const [col, s] of Object.entries(data.statistics)) {
+        const missBadge = s.missing > 0 ? `<span class="tag tag-red">${s.missing}</span>` : '<span class="tag tag-green">0</span>';
+        html += `<tr>
+          <td><strong>${col}</strong></td>
+          <td>${s.n}</td>
+          <td>${s.mean}</td>
+          <td>${s.std}</td>
+          <td>${s.min}</td>
+          <td>${s.median}</td>
+          <td>${s.max}</td>
+          <td>${s.skewness > 1 ? '⚠️ ' : ''}${s.skewness}</td>
+          <td>${missBadge}</td>
+        </tr>`;
+      }
+      html += '</tbody></table></div>';
+    }
+    if (data.image) html += `<img src="data:image/png;base64,${data.image}" class="result-img">`;
+    html += '</div>';
+  }
+
+  else if (data.type === 'regression_simple') {
+    const p = data.params;
+    const r2color = p.r2 > 0.7 ? 'var(--green)' : p.r2 > 0.4 ? 'var(--yellow)' : 'var(--red)';
+    html += `<div class="card">
+      <div class="card-title">📉 Régression Simple — Résultats</div>
+      <div class="code-block" style="margin-bottom:16px;">Équation : ${p.equation}</div>
+      <div class="metric-row">
+        <div class="metric-chip"><div class="metric-chip-label">R²</div><div class="metric-chip-val" style="color:${r2color}">${p.r2}</div></div>
+        <div class="metric-chip"><div class="metric-chip-label">Corrélation (r)</div><div class="metric-chip-val">${p.r}</div></div>
+        <div class="metric-chip"><div class="metric-chip-label">P-valeur</div><div class="metric-chip-val" style="color:${p.p_value < 0.05 ? 'var(--green)' : 'var(--red)'}">${p.p_value}</div></div>
+        <div class="metric-chip"><div class="metric-chip-label">RMSE</div><div class="metric-chip-val">${p.rmse}</div></div>
+        <div class="metric-chip"><div class="metric-chip-label">Coefficient</div><div class="metric-chip-val">${p.coefficient}</div></div>
+        <div class="metric-chip"><div class="metric-chip-label">Intercept</div><div class="metric-chip-val">${p.intercept}</div></div>
+        <div class="metric-chip"><div class="metric-chip-label">N</div><div class="metric-chip-val">${p.n}</div></div>
+      </div>
+      <div style="padding:10px 14px; border-radius:8px; font-size:.85rem; background:rgba(88,166,255,.08); border:1px solid rgba(88,166,255,.2); color:var(--text2);">
+        ${p.p_value < 0.05 ? '✅ Relation statistiquement significative (p < 0.05)' : '⚠️ Relation non significative (p ≥ 0.05)'}
+        · R² = ${p.r2} → ${p.r2 > 0.7 ? 'Bonne' : p.r2 > 0.4 ? 'Modérée' : 'Faible'} qualité d'ajustement
+      </div>
+      ${data.image ? `<img src="data:image/png;base64,${data.image}" class="result-img">` : ''}
+    </div>`;
+  }
+
+  else if (data.type === 'regression_multiple') {
+    const p = data.params;
+    const r2color = p.r2 > 0.7 ? 'var(--green)' : p.r2 > 0.4 ? 'var(--yellow)' : 'var(--red)';
+    html += `<div class="card">
+      <div class="card-title">📐 Régression Multiple — Résultats</div>
+      <div class="metric-row">
+        <div class="metric-chip"><div class="metric-chip-label">R²</div><div class="metric-chip-val" style="color:${r2color}">${p.r2}</div></div>
+        <div class="metric-chip"><div class="metric-chip-label">RMSE</div><div class="metric-chip-val">${p.rmse}</div></div>
+        <div class="metric-chip"><div class="metric-chip-label">N</div><div class="metric-chip-val">${p.n}</div></div>
+        <div class="metric-chip"><div class="metric-chip-label">Prédicteurs</div><div class="metric-chip-val">${p.n_predictors}</div></div>
+      </div>
+      <div class="grid-2" style="margin-top:12px;">
+        <div>
+          <div class="form-label" style="margin-bottom:8px;">Coefficients Standardisés</div>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Variable</th><th>Coef.</th><th>VIF</th></tr></thead>
+            <tbody>
+              ${Object.entries(p.coefficients).map(([k,v]) => `
+                <tr>
+                  <td>${k}</td>
+                  <td style="color:${v>0?'var(--green)':'var(--red)'}">${v.toFixed(4)}</td>
+                  <td style="color:${p.vif[k]>5?'var(--red)':'var(--text2)'}">${p.vif[k]}</td>
+                </tr>`).join('')}
+            </tbody></table></div>
+        </div>
+        <div style="padding:14px; background:var(--surface2); border-radius:8px; font-size:.85rem;">
+          <div style="font-weight:600; margin-bottom:10px;">Interprétation</div>
+          <div style="color:var(--text2); line-height:1.7;">
+            • R² = ${p.r2} → le modèle explique <strong style="color:var(--blue)">${(p.r2*100).toFixed(1)}%</strong> de la variance<br>
+            • RMSE = ${p.rmse} (erreur quadratique moyenne)<br>
+            • VIF > 5 indique une multicolinéarité potentielle<br>
+            • Coefficients standardisés : valeur absolue = importance
+          </div>
+        </div>
+      </div>
+      ${data.image ? `<img src="data:image/png;base64,${data.image}" class="result-img">` : ''}
+    </div>`;
+  }
+
+  else if (data.type === 'clustering') {
+    const p = data.params;
+    const silColor = p.silhouette_score > 0.5 ? 'var(--green)' : p.silhouette_score > 0.25 ? 'var(--yellow)' : 'var(--red)';
+    html += `<div class="card">
+      <div class="card-title">🎯 Clustering K-Means — Résultats</div>
+      <div class="metric-row">
+        <div class="metric-chip"><div class="metric-chip-label">Clusters</div><div class="metric-chip-val" style="color:var(--blue)">${p.n_clusters}</div></div>
+        <div class="metric-chip"><div class="metric-chip-label">Score Silhouette</div><div class="metric-chip-val" style="color:${silColor}">${p.silhouette_score}</div></div>
+        <div class="metric-chip"><div class="metric-chip-label">Inertie Totale</div><div class="metric-chip-val">${p.total_inertia}</div></div>
+      </div>
+      <div class="table-wrap" style="margin-top:12px;"><table>
+        <thead><tr><th>Cluster</th><th>N</th><th>%</th>${Object.keys(Object.values(p.cluster_summary)[0].means).map(c=>`<th>${c} (moy.)</th>`).join('')}</tr></thead>
+        <tbody>
+          ${Object.entries(p.cluster_summary).map(([cl, cs], i) => {
+            const colors = ['var(--blue)','var(--green)','var(--red)','var(--purple)','var(--orange)'];
+            return `<tr>
+              <td><span class="tag" style="background:rgba(0,0,0,.3);color:${colors[i]};border:1px solid ${colors[i]}">${cl}</span></td>
+              <td>${cs.n}</td>
+              <td>${cs.pct}%</td>
+              ${Object.values(cs.means).map(v=>`<td>${v}</td>`).join('')}
+            </tr>`;
+          }).join('')}
+        </tbody></table></div>
+      ${data.image ? `<img src="data:image/png;base64,${data.image}" class="result-img">` : ''}
+    </div>`;
+  }
+
+  else if (data.type === 'acp') {
+    const p = data.params;
+    html += `<div class="card">
+      <div class="card-title">🔮 ACP — Résultats</div>
+      <div class="metric-row">
+        <div class="metric-chip"><div class="metric-chip-label">Variables</div><div class="metric-chip-val" style="color:var(--blue)">${p.n_variables}</div></div>
+        <div class="metric-chip"><div class="metric-chip-label">Observations</div><div class="metric-chip-val">${p.n_obs}</div></div>
+        <div class="metric-chip"><div class="metric-chip-label">Composantes (90%)</div><div class="metric-chip-val" style="color:var(--green)">${p.n_components_90pct}</div></div>
+        <div class="metric-chip"><div class="metric-chip-label">Variance Expliquée</div><div class="metric-chip-val" style="color:var(--purple)">${p.total_variance_explained}%</div></div>
+      </div>
+      <div class="table-wrap" style="margin-top:12px;"><table>
+        <thead><tr><th>Composante</th><th>Variance %</th><th>Valeur Propre</th><th>Meilleures Variables</th></tr></thead>
+        <tbody>
+          ${Object.entries(p.components).map(([pc, comp]) => {
+            const sorted = Object.entries(comp.loadings).sort((a,b)=>Math.abs(b[1])-Math.abs(a[1])).slice(0,3);
+            return `<tr>
+              <td><strong>${pc}</strong></td>
+              <td>
+                ${comp.variance_pct}%
+                <div class="progress-bar"><div class="progress-fill" style="width:${comp.variance_pct}%"></div></div>
+              </td>
+              <td>${comp.eigenvalue}</td>
+              <td>${sorted.map(([k,v])=>`<span class="tag tag-blue" style="margin:2px;">${k}: ${v.toFixed(2)}</span>`).join('')}</td>
+            </tr>`;
+          }).join('')}
+        </tbody></table></div>
+      ${data.image ? `<img src="data:image/png;base64,${data.image}" class="result-img">` : ''}
+    </div>`;
+  }
+
+  div.innerHTML = html;
+  div.scrollIntoView({behavior:'smooth'});
+}
+
+// ─────────────────────────────────────────────
+//  RESULTATS PAGE
+// ─────────────────────────────────────────────
+function refreshResultats() {
+  if (state.loaded) {
+    document.getElementById('resultDataSummary').innerHTML = `
+      <div class="grid-4">
+        <div class="stat-card"><div class="stat-value" style="color:var(--blue)">${state.rows}</div><div class="stat-label">Observations</div></div>
+        <div class="stat-card"><div class="stat-value" style="color:var(--green)">${state.cols}</div><div class="stat-label">Variables</div></div>
+        <div class="stat-card"><div class="stat-value" style="color:var(--purple)">${state.numeric_cols.length}</div><div class="stat-label">Numériques</div></div>
+        <div class="stat-card"><div class="stat-value" style="color:var(--orange)">${state.results.length}</div><div class="stat-label">Analyses</div></div>
+      </div>
+      <div style="margin-top:12px; color:var(--text2); font-size:.875rem;">
+        Fichier: <code style="color:var(--blue);">${state.filename}</code>
+        · Colonnes: ${state.columns.join(', ')}
+      </div>
+    `;
+  }
+  // History
+  const hist = document.getElementById('historyList');
+  if (state.results.length === 0 && !state.loaded) {
+    hist.innerHTML = '<div style="color:var(--text2); text-align:center; padding:16px; font-size:.875rem;">Aucune action.</div>';
+  } else {
+    const items = [];
+    if (state.loaded) items.push({type:'Données', label:`Chargé: ${state.filename} (${state.rows}×${state.cols})`, ts:''});
+    state.results.forEach(r => items.push({type:'Analyse', label:`${r.type} · ${r.ts}`, ts:r.ts}));
+    hist.innerHTML = items.map(i => `
+      <div class="history-item">
+        <span class="history-dot"></span>
+        <span class="tag tag-blue" style="font-size:.72rem; padding:2px 8px;">${i.type}</span>
+        <span>${i.label}</span>
+      </div>
+    `).join('');
+  }
+}
+
+// ─────────────────────────────────────────────
+//  EXPORT
+// ─────────────────────────────────────────────
+function exportData() {
+  if (!state.loaded) { toast('Aucune donnée à exporter', 'error'); return; }
+  window.open(`${API}/api/export`, '_blank');
+  toast('📥 Téléchargement démarré', 'success');
+}
+
+function printPage() { window.print(); }
+
+// ─────────────────────────────────────────────
+//  BUILD TABLE
+// ─────────────────────────────────────────────
+function buildTable(records, cols) {
+  if (!records || !records.length) return '<p style="color:var(--text2)">Aucune donnée</p>';
+  const headers = cols || Object.keys(records[0]);
+  let html = '<table><thead><tr>';
+  headers.forEach(h => { html += `<th>${h}</th>`; });
+  html += '</tr></thead><tbody>';
+  records.forEach(row => {
+    html += '<tr>';
+    headers.forEach(h => {
+      const v = row[h];
+      let cell = v === null || v === undefined ? '<span style="color:var(--text2)">—</span>' : v;
+      if (typeof v === 'number') cell = v;
+      html += `<td>${cell}</td>`;
+    });
+    html += '</tr>';
+  });
+  html += '</tbody></table>';
+  return html;
+}
+
+// ─────────────────────────────────────────────
+//  INIT
+// ─────────────────────────────────────────────
+async function init() {
+  try {
+    const res = await fetch(`${API}/api/status`);
+    const data = await res.json();
+    if (data.loaded) {
+      updateStatus({loaded:true, rows:data.rows, cols:data.cols,
+        columns:data.columns, numeric_cols:data.numeric_cols,
+        cat_cols:data.cat_cols, preview:data.preview, filename:data.filename});
+      refreshHome();
+    }
+  } catch(e) {}
+}
+
+// Show page helper
+function showPage(p) {
+  document.querySelectorAll('.page').forEach(x => x.classList.remove('active'));
+  document.getElementById(`page-${p}`).classList.add('active');
+  if (p === 'analyse') refreshAnalyseSelectors();
+  if (p === 'resultats') refreshResultats();
+  if (p === 'home') refreshHome();
+}
+
+init();
+</script>
+</body>
+</html>
